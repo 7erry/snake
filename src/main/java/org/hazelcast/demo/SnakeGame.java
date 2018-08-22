@@ -1,6 +1,7 @@
 package org.hazelcast.demo;
 
 import com.hazelcast.config.Config;
+import com.hazelcast.config.JoinConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 
@@ -123,7 +124,10 @@ public class SnakeGame extends JFrame {
 	 */
 	LoginDialog loginDlg = new LoginDialog(this);
 
-
+	/**
+	 *
+	 */
+	
 
 	/**
 	 * Creates a new SnakeGame instance. Creates a new window,
@@ -138,7 +142,16 @@ public class SnakeGame extends JFrame {
 		// set our group name to be a non default value
 		Config config = new Config();
 		config.getGroupConfig().setName("snake-game");
-		//config.getNetworkConfig()
+		JoinConfig join = config.getNetworkConfig().getJoin();
+        	join.getMulticastConfig().setMulticastGroup("224.2.2.3");
+        	join.getMulticastConfig().setMulticastPort(54327);
+        	join.getTcpIpConfig().setEnabled(false);
+        	join.getMulticastConfig().setEnabled(true);
+
+        	//join.getMulticastConfig().setMulticastGroup(MULTICAST_ADDRESS);
+        	//join.getMulticastConfig().setMulticastPort(PORT_NUMBER);
+        	join.getMulticastConfig().setMulticastTimeoutSeconds(1);
+
 		HazelcastInstance hz = Hazelcast.newHazelcastInstance(config);
 		/**
 		 * Hazelcast Rest for global games
