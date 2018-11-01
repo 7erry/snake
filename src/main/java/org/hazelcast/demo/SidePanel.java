@@ -21,10 +21,14 @@ public class SidePanel extends JPanel {
 	private static final long serialVersionUID = -40557434900946408L;
 
 	/**
+	 * The very large font to draw with.
+	 */
+	private static final Font VERY_LARGE_FONT = new Font("Tahoma", Font.BOLD, 40);
+	/**
 	 * The large font to draw with.
 	 */
 	private static final Font LARGE_FONT = new Font("Tahoma", Font.BOLD, 20);
-	
+
 	/**
 	 * The medium font to draw with.
 	 */
@@ -75,7 +79,13 @@ public class SidePanel extends JPanel {
 		 */
 		g.setFont(LARGE_FONT);
 		g.drawString("Snake Game", getWidth() / 2 - g.getFontMetrics().stringWidth("Snake Game") / 2, 50);
-		
+		g.setFont(MEDIUM_FONT);
+		g.drawString("powered by", getWidth() / 2 - g.getFontMetrics().stringWidth("powered by") / 2, 70);
+
+		g.setFont(VERY_LARGE_FONT);
+		g.setColor(Color.BLUE);
+		g.drawString("Hazelcast", getWidth() / 2 - g.getFontMetrics().stringWidth("Hazelcast") / 2, 105);
+		g.setColor(Color.WHITE);
 		/*
 		 * Draw the categories onto the window.
 		 */
